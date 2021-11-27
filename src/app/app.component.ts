@@ -34,15 +34,20 @@ export class AppComponent {
 
   onGenerateTeams() {
     if (!this.numberOfTeams || this.numberOfTeams <= 0) {
+      this.errorMessage = 'Invalid number of teams';
       return;
     }
 
+    if (this.members.length < this.numberOfTeams) {
+      this.errorMessage = 'Not enough members';
+    }
+
+    this.errorMessage = '';
     const allMembers = [...this.members];
 
     while (allMembers.length) {
       for (let i = 0; i < this.numberOfTeams; i++) {
         const randomIndex = Math.floor(Math.random() * allMembers.length);
-        // console.log(randomIndex);
         const member = allMembers.splice(randomIndex, 1)[0];
         console.log(member);
 
@@ -55,6 +60,8 @@ export class AppComponent {
         }
       }
     }
+    this.members = [];
+    this.teams = [];
 
     console.log(this.teams);
   }
