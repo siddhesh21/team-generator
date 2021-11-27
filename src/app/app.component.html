@@ -17,9 +17,15 @@
     </div>
 
     <div class="input-container">
-      <input type="text" placeholder="# of Teams" />
-      <button>Generate</button>
+      <input
+        #numberOfTeamsInput
+        type="number"
+        placeholder="# of Teams"
+        (input)="onNumberOfTeamsInput(numberOfTeamsInput.value)"
+        [value]="numberOfTeams"
+      />
+      <button (click)="onGenerateTeams()">Generate</button>
     </div>
-    <p *ngIf = "errorMessage" class="error-msg">{{ errorMessage }}</p>
+    <p *ngIf="errorMessage" class="error-msg">{{ errorMessage }}</p>
   </div>
 </div>
